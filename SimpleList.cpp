@@ -6,6 +6,17 @@
 #include "SimpleList.h"
 using namespace std;
 
+template<class T>
+void destroy(T element) {
+	// do nothing
+}
+
+template <class T>
+void destroy(T* element) {
+	// delete the pointer type
+	delete element;
+}
+
 template <class T>
 SimpleList<T>::SimpleList(){
   numElements = 0;
@@ -14,6 +25,9 @@ SimpleList<T>::SimpleList(){
 
 template <class T>
 SimpleList<T>::~SimpleList(){
+  for(int i = 0; i < numElements; i++){
+	 destroy(elements[i]);
+  }
   delete[] elements;
   elements = NULL;
 }
