@@ -57,6 +57,7 @@ void SimpleList<T>::insert(T item) throw (FullListException){
     if (!elements[i]) {IsFull = false; elements[i] = item; break;}
   }
   if (IsFull) throw FullListException();
+  numElements++;
 }
 
 template <class T>
@@ -68,4 +69,5 @@ void SimpleList<T>::remove(int index) throw (InvalidIndexException, EmptyListExc
       elements[i] = elements[i+1];
     }
     elements[10] = 0;
+    numElements--;
 }
