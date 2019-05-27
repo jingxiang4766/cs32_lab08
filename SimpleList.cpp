@@ -8,20 +8,17 @@ using namespace std;
 
 template<class T>
 void destroy(T element) {
-	cout << "destroy T" << endl;
 	// do nothing
 }
 
 template <class T>
 void destroy(T* element) {
 	// delete the pointer type
-	cout << "destroy T*" << endl;
 	delete element;
 }
 
 template <class T>
 void destroy(T** element){
-	cout << "destroy T**" << endl;
 	delete[] element;
 }
 
@@ -79,7 +76,6 @@ template <class T>
 void SimpleList<T>::remove(int index) throw (InvalidIndexException, EmptyListException){
     if (this->empty()) throw EmptyListException();
     if (index < 0 || index >= numElements) throw InvalidIndexException();
-    cout << numElements << endl;
     //if (numElements == 1) {destroy(elements[0]); return;}
     destroy(elements[index]);
     for (int i = index+1; i < numElements; i++){
