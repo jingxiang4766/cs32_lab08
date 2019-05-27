@@ -37,7 +37,7 @@ SimpleList<T>::~SimpleList(){
 	 if (is_pointer<T>::value) {destroy(elements[i]);}
 	 else {destroy(elements[i]);}
   }
-  //delete[] elements
+  delete[] elements;
 }
 
 template <class T>
@@ -79,6 +79,9 @@ template <class T>
 void SimpleList<T>::remove(int index) throw (InvalidIndexException, EmptyListException){
     if (this->empty()) throw EmptyListException();
     if (index < 0 || index >= numElements) throw InvalidIndexException();
+    cout << numElements << endl;
+    //if (numElements == 1) {destroy(elements[0]); return;}
+    destroy(elements[index]);
     for (int i = index+1; i < numElements; i++){
       elements[i-1] = elements[i];
     }
