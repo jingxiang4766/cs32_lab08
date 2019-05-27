@@ -17,16 +17,13 @@ SimpleList<T>::~SimpleList(){
 
 template <class T>
 T SimpleList<T>::at(int index) const throw(InvalidIndexException){
-  if (!elements[index]) throw InvalidIndexException();
+  if (index < 0 || index > numElements) throw InvalidIndexException();
   return elements[index];
 }
 
 template <class T>
 bool SimpleList<T>::empty() const{
-  for (int i = 0; i < 10; i++){
-    if (elements[i]) return false;
-  }
-  return true;
+  return numElements == 0;
 }
 
 template <class T>
@@ -38,7 +35,7 @@ T SimpleList<T>::first() const throw (EmptyListException){
 template <class T>
 T SimpleList<T>::last() const throw (EmptyListException){
   if (this->empty()) throw EmptyListException();
-  return elements[9];
+  return elements[numElements-1];
 }
 
 template <class T>
@@ -53,22 +50,17 @@ int SimpleList<T>::getNumElements() const{
 
 template <class T>
 void SimpleList<T>::insert(T item) throw (FullListException){
-  bool IsFull = true;
-  for (int i = 0; i < 10; i++){
-    if (!elements[i]) {IsFull = false; elements[i] = item; break;}
-  }
-  if (IsFull) throw FullListException();
+  if (numElements == 10) throw FullListException();
+  elements[numElements] = item;
   numElements++;
 }
 
 template <class T>
 void SimpleList<T>::remove(int index) throw (InvalidIndexException, EmptyListException){
     if (this->empty()) throw EmptyListException();
-    if (!elements[index]) throw InvalidIndexException();
-    elements[index] = 0;
-    for (int i = index; i < 9; i++){
+    if (index < 0 || index > numElements) throw InvalidIndexException();
+    for (int i = index; i < numElements-1; i++){
       elements[i] = elements[i+1];
     }
-    elements[10] = 0;
     numElements--;
 }
