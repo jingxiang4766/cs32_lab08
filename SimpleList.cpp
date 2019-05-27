@@ -9,12 +9,12 @@ using namespace std;
 template <class T>
 SimpleList<T>::SimpleList(){
   numElements = 0;
-  elements = new T[CAPACITY];
+  elements = new T[10];
 }
 
 template <class T>
 SimpleList<T>::~SimpleList(){
-  free(elements);
+  delete[] elements;
 }
 
 template <class T>
@@ -61,8 +61,8 @@ template <class T>
 void SimpleList<T>::remove(int index) throw (InvalidIndexException, EmptyListException){
     if (this->empty()) throw EmptyListException();
     if (index < 0 || index >= numElements) throw InvalidIndexException();
-    for (int i = index; i < numElements-1; i++){
-      elements[i] = elements[i+1];
+    for (int i = index+1; i < numElements; i++){
+      elements[i-1] = elements[i];
     }
     numElements--;
 }
