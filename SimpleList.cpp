@@ -9,7 +9,7 @@ using namespace std;
 template <class T>
 SimpleList<T>::SimpleList(){
   numElements = 0;
-  elements = new T[10];
+  elements = new T[CAPACITY];
 }
 
 template <class T>
