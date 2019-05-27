@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include "SimpleList"
 using namespace std;
 
 SimpleList::SimpleList(){
