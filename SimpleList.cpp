@@ -1,40 +1,50 @@
 #include <iostream>
 #include <algorithm>
-#include "SimpleList"
+#include "SimpleList.h"
 using namespace std;
 
-SimpleList::SimpleList(){
+template <class T>
+SimpleList<T>::SimpleList(){
   numElements = 0;
   elements = new T[10];
+  for (int i = 0; i < 10; i++){
+	 elements[i] = 0;
+  }
 }
 
-SimpleList::~SimpleList(){
+template <class T>
+SimpleList<T>::~SimpleList(){
   delete[] elements;
 }
 
-T SimpleList::at(int index) const throw(InvalidIndexException){
+template <class T>
+T SimpleList<T>::at(int index) const throw(InvalidIndexException){
   if (elements[index] == 0) throw InvalidIndexException();
   return elements[index];
 }
 
-bool SimpleList::empty() const{
+template <class T>
+bool SimpleList<T>::empty() const{
   for (int i = 0; i < 10; i++){
     if (elements[index] != 0) return false;
   }
   return true;
 }
 
-T SimpleList::first() const throw (EmptyListException){
+template <class T>
+T SimpleList<T>::first() const throw (EmptyListException){
   if (this->empty()) throw EmptyListException();
   return elements[0];
 }
 
-T SimpleList::last() const throw (EmptyListException){
+template <class T>
+T SimpleList<T>::last() const throw (EmptyListException){
   if (this->empty()) throw EmptyListException();
   return elements[9];
 }
 
-int SimpleList::getNumElements() const{
+template <class T>
+int SimpleList<T>::getNumElements() const{
   int count = 0;
   for (int i = 0; i < 10; i++){
     if (elements[i] != 0) count++;
@@ -42,15 +52,17 @@ int SimpleList::getNumElements() const{
   return count;
 }
 
-void SimpleList::insert(T item) throw (FullListException){
-  bool IsFull = True;
+template <class T>
+void SimpleList<T>::insert(T item) throw (FullListException){
+  bool IsFull = true;
   for (int i = 0; i < 10; i++){
-    if (elements[i] == 0) {IsFull = False; elements[i] = item; break;}
+    if (elements[i] == 0) {IsFull = false; elements[i] = item; break;}
   }
   if (IsFull) throw FullListException();
 }
 
-void SimpleList::remove(int index) throw (InvalidIndexException, EmptyListException){
+template <class T>
+void SimpleList<T>::remove(int index) throw (InvalidIndexException, EmptyListException){
     if (this->empty()) throw EmptyListException();
     if (elements[index] == 0) throw InvalidIndexException();
     elements[index] = 0;
