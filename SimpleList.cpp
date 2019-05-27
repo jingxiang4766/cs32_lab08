@@ -9,12 +9,13 @@ using namespace std;
 template <class T>
 SimpleList<T>::SimpleList(){
   numElements = 0;
-  elements = new T[10];
+  elements = new T[CAPACITY];
 }
 
 template <class T>
 SimpleList<T>::~SimpleList(){
   delete[] elements;
+  elements = NULL;
 }
 
 template <class T>
@@ -42,11 +43,6 @@ T SimpleList<T>::last() const throw (EmptyListException){
 
 template <class T>
 int SimpleList<T>::getNumElements() const{
-  // int count = 0;
-  // for (int i = 0; i < 10; i++){
-  //   if (elements[i]) count++;
-  // }
-  // return count;
   return numElements;
 }
 
