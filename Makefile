@@ -15,7 +15,7 @@ testSimpleList2: testSimpleList2.o SimpleList.o tddFuncs.o
 	${CXX} $^ -o $@
 
 testSimpleList3: testSimpleList3.o SimpleList.o tddFuncs.o
-	${CXX} $^ -o $@
+	${CXX} -g $^ -o $@
 
 lt01: testSimpleList3
 	- valgrind -q --leak-check=full ./testSimpleList3

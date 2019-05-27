@@ -9,6 +9,7 @@
 using namespace std;
 
 void testDestructor1() {
+	cout << "test 1" << endl;
 	SimpleList<string*> list2;
 	string* s1 = new string("something1");
 	string* s2 = new string("something2");
@@ -17,6 +18,7 @@ void testDestructor1() {
 }
 
 void testDestructor2() {
+	cout << "test 2" << endl;
 	SimpleList<string*>* list3 = new SimpleList<string*>();
 	string* s1 = new string("something1");
 	string* s2 = new string("something2");
@@ -40,9 +42,13 @@ int main() {
 	ASSERT_EQUALS("item1", *list.first());
 	ASSERT_EQUALS("item2", *list.last());
 	ASSERT_EQUALS(2, list.getNumElements());
+	
+	cout << "check point" << endl;
 
 	list.remove(0);
 	list.remove(0);
+
+	cout << "check point" << endl;
 
 	testDestructor1();
 	testDestructor2();
