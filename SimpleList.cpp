@@ -14,7 +14,7 @@ SimpleList<T>::SimpleList(){
 
 template <class T>
 SimpleList<T>::~SimpleList(){
-  delete[] elements;
+  free(elements);
 }
 
 template <class T>
