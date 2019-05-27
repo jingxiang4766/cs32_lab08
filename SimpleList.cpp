@@ -17,7 +17,7 @@ SimpleList<T>::~SimpleList(){
 
 template <class T>
 T SimpleList<T>::at(int index) const throw(InvalidIndexException){
-  if (index < 0 || index > numElements) throw InvalidIndexException();
+  if (index < 0 || index >= numElements) throw InvalidIndexException();
   return elements[index];
 }
 
@@ -58,7 +58,7 @@ void SimpleList<T>::insert(T item) throw (FullListException){
 template <class T>
 void SimpleList<T>::remove(int index) throw (InvalidIndexException, EmptyListException){
     if (this->empty()) throw EmptyListException();
-    if (index < 0 || index > numElements) throw InvalidIndexException();
+    if (index < 0 || index >= numElements) throw InvalidIndexException();
     for (int i = index; i < numElements-1; i++){
       elements[i] = elements[i+1];
     }
